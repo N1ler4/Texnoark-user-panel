@@ -50,13 +50,13 @@ function Index() {
               <div className="flex justify-between mb-[20px]">
                 <div className="w-[86px] lg:w-[116px]">
                   <p className="text-[#240E00CC] text-[12px]">...dan</p>
-                  <p className="w-full h-[34px] lg:h-[54px] py-[8px] lg:py-[14px] px-[14px] lg:px-[28px] bg-[#F0F0F0] rounded-md text-[12px] lg:text-[18px] text-[#240E00] font-medium">
+                  <p className="w-full h-[34px] lg:h-[54px] px-[16px] py-[8px] lg:py-[12px] bg-[#F0F0F0] rounded-md text-[12px] lg:text-[18px] text-[#240E00] font-medium">
                     {slide1.toLocaleString()}
                   </p>
                 </div>
-                <div className="w-[86px] xl:w-[116px]">
+                <div className="w-[86px] xl:w-[116px] ml-[8px]">
                   <p className="text-[#240E00CC] text-[12px]">...gacha</p>
-                  <p className="w-full h-[34px] lg:h-[54px] py-[8px] lg:py-[14px] px-[14px] lg:px-[28px] bg-[#F0F0F0] rounded-md text-[12px] lg:text-[18px] text-[#240E00] font-medium">
+                  <p className="w-full h-[34px] lg:h-[54px] px-[14px] py-[8px] lg:py-[12px] bg-[#F0F0F0] rounded-md text-[12px] lg:text-[18px] text-[#240E00] font-medium">
                     {slide2.toLocaleString()}
                   </p>
                 </div>
@@ -270,7 +270,7 @@ function Index() {
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-[20px] w-[956px]">
+            <div className=" flex flex-wrap ml-7 sm:ml-2 md:ml-0  gap-[20px] w-[956px] mx-auto justify-center items-center">
               {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((e, i) => (
                 <ProductCard key={i} />
               ))}

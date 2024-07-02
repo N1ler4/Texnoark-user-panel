@@ -13,12 +13,12 @@ import Link from "next/link";
 function page() {
   return (
     <Link href={"/product"}>
-      <div className="w-[305px] h-[490px] pt-[50px] pb-[36px] px-[30px] bg-white rounded-xl duration-200 hover:scale-105 ">
+      <div className="w-[305px] h-[490px] pt-[50px] pb-[36px] px-[30px] bg-white rounded-xl ">
         <div className="w-[150px] h-[160px] mx-auto">
           <Image
             src={Product}
             alt="IMG"
-            className="w-[150px] h-[100px]"
+            className="w-[150px] h-[100px] duration-200 hover:scale-110  overline-hidden"
           />
         </div>
         <p className="mt-[36px] text-[16px] mb-[16px]">

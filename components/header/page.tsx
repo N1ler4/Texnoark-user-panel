@@ -1,17 +1,9 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Container from "../container/page";
 import Image from "next/image";
 import LOGO from "../../images/LOGO.png";
-import {
-  Button,
-  Input,
-  Avatar,
-  Badge,
-  DrawerProps,
-  RadioChangeEvent,
-  Drawer,
-} from "antd";
+import { Button, Input, Avatar, Badge, Drawer } from "antd";
 import {
   ArrowRightOutlined,
   BarChartOutlined,
@@ -26,37 +18,47 @@ import {
 import "./style.css";
 import useCategoryStore from "@/store/categories/page";
 import Link from "next/link";
+import useSubCategoryStore from "@/store/sub-categories/page";
 
 function Index() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<number | null>(null);
   const { categories, getCategories } = useCategoryStore();
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [placement, setPlacement] = useState<DrawerProps["placement"]>("right");
+  const { getSubCategories } = useSubCategoryStore();
+  const [subCategory, setSubCategory] = useState<any>([]);
+  console.log(subCategory);
 
-  const showDrawer = () => {
-    setDrawerOpen(true);
-  };
+  const toggleDrawer = useCallback(() => {
+    setDrawerOpen((prevState) => !prevState);
+  }, []);
 
-  const onClose = () => {
-    setDrawerOpen(false);
-  };
+  const toggleCategory = useCallback(() => {
+    setOpen((prevState) => !prevState);
+  }, []);
 
-  const onChange = (e: RadioChangeEvent) => {
-    setPlacement(e.target.value);
-  };
+  const handleCategoryClick = useCallback(
+    async (i: any, id: any) => {
+      setActive(i);
+      const subCategories = await getSubCategories(id);
+      setSubCategory(subCategories.data.data.subcategories);
+    },
+    [getSubCategories]
+  );
 
   useEffect(() => {
     getCategories();
-  }, []);
+  }, [getCategories]);
 
   return (
     <header>
       <div className="py-2 bg-[#F0F0F0]">
         <Container>
           <div className="hidden xl:flex justify-between items-center">
-            <ul className="flex items-center gap-4 text-sm font-medium cursor-pointer ">
-              <li>Biz Haqimizda</li>
+            <ul className="flex items-center gap-4 text-sm font-medium cursor-pointer">
+              <li>
+                <Link href="/about">Biz Haqimizda</Link>
+              </li>
               <li>Yetkazib berish</li>
               <li>Shartnoma shartlari</li>
               <li>Bizning kafolatlar</li>
@@ -79,7 +81,7 @@ function Index() {
 
       <div>
         <Container>
-          <div className="py-4 px-4 flex flex-row justify-between  bg-white rounded-md relative items-center">
+          <div className="py-4 px-4 flex flex-row justify-between bg-white rounded-md relative items-center">
             <Link href="/">
               <Image
                 className="ml-4"
@@ -90,15 +92,15 @@ function Index() {
               />
             </Link>
 
-            <div className="hidden xl:flex gap-4 items-center mt-4 md:mt-0">
+            <div className="xl:flex gap-4 items-center mt-4 md:mt-0">
               <Button
-                onClick={() => setOpen(!open)}
+                onClick={toggleCategory}
                 className="category_btn bg-[#1EB91E] text-white text-sm font-bold py-3 px-6 h-12"
               >
                 {open ? (
                   <CloseOutlined className="text-lg" />
                 ) : (
-                  <MenuOutlined className="text-lg " />
+                  <MenuOutlined className="text-lg" />
                 )}
                 Kategoriya
               </Button>
@@ -114,23 +116,54 @@ function Index() {
                 open ? "top-[100px] opacity-100" : "top-[-1200px] opacity-0"
               } drawer`}
             >
-              {categories.map((e, i) => (
-                <div key={i} onClick={() => setActive(i)}>
-                  {active === i ? (
-                    <div className="bg-[#D55200] mt-2 flex items-center justify-between w-full md:w-[440px] h-[50px] py-8 px-4 rounded-xl cursor-pointer card">
-                      <PhoneOutlined className="w-15 h-15 bg-[#FF800B1A] rounded-full p-5 text-[#FFFFFF]" />
-                      <p className="text-white">{e.name}</p>
-                      <ArrowRightOutlined className="text-white" />
+              <div className="flex">
+                <div className="border-r-2 pr-10 border-[#331400]">
+                  {categories.map((category, index) => (
+                    <div
+                      key={index}
+                      onClick={() => handleCategoryClick(index, category.id)}
+                    >
+                      {active === index ? (
+                        <div className="bg-[#D55200] mt-2 flex items-center justify-between w-full md:w-[440px] h-[50px] py-8 px-4 rounded-xl cursor-pointer card">
+                          <PhoneOutlined className="w-15 h-15 bg-[#FF800B1A] rounded-full p-5 text-[#FFFFFF]" />
+                          <p className="text-white">{category.name}</p>
+                          <ArrowRightOutlined className="text-white" />
+                        </div>
+                      ) : (
+                        <div className="mt-2 flex items-center justify-between w-full md:w-[440px] h-[50px] py-8 px-4 bg-white rounded-xl cursor-pointer card hover:bg-[#f2f2f2]">
+                          <PhoneOutlined className="w-15 h-15 bg-[#FF800B1A] rounded-full p-5 text-[#D55200]" />
+                          <p>{category.name}</p>
+                          <ArrowRightOutlined />
+                        </div>
+                      )}
                     </div>
-                  ) : (
-                    <div className="mt-2 flex items-center justify-between w-full md:w-[440px] h-[50px] py-8 px-4 bg-white rounded-xl cursor-pointer card hover:bg-[#f2f2f2]">
-                      <PhoneOutlined className="w-15 h-15 bg-[#FF800B1A] rounded-full p-5 text-[#D55200]" />
-                      <p>{e.name}</p>
-                      <ArrowRightOutlined />
-                    </div>
-                  )}
+                  ))}
                 </div>
-              ))}
+                {subCategory.length ? (
+                  <>
+                    <div className="flex flex-col justify-start items-center w-full px-5 mt-2">
+                      {subCategory.map((e: any) => {
+                        return (
+                          <Link href={"/#"} className="w-full">
+                            <div className="h-[65px] w-full mb-2 bg-[#F5F5F5] rounded-xl">
+                              <div
+                                key={e.id}
+                                className="pt-5 pl-5 items-center justify-center w-full flex flex-col"
+                              >
+                                <div className="h-[50px] w-full">
+                                  <Link href={`#`}>{e.name}</Link>
+                                </div>
+                              </div>
+                            </div>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </>
+                ) : (
+                  <div className="px-5 py-5">Not Found</div>
+                )}
+              </div>
             </div>
 
             <div className="hidden xl:flex items-center gap-3 mt-4 md:mt-0">
@@ -161,26 +194,28 @@ function Index() {
                   <ShoppingCartOutlined className="text-lg text-black" />
                 </Avatar>
               </Badge>
-              <Avatar
-                size="large"
-                icon={<UserOutlined className="text-lg text-black" />}
-                className="bg-[#F0F0F0] cursor-pointer"
-              />
+              <Link href="/login">
+                <Avatar
+                  size="large"
+                  icon={<UserOutlined className="text-lg text-black" />}
+                  className="bg-[#F0F0F0] cursor-pointer"
+                />
+              </Link>
             </div>
 
-            <div className="block xl:hidden ">
-              <MenuOutlined onClick={showDrawer} />
+            <div className="block xl:hidden">
+              <MenuOutlined onClick={toggleDrawer} />
             </div>
           </div>
         </Container>
       </div>
+
       <Drawer
         title="Basic Drawer"
-        placement={placement}
+        placement="right"
         closable={true}
-        onClose={onClose}
+        onClose={toggleDrawer}
         open={drawerOpen}
-        key={placement}
       >
         <p>Some contents...</p>
         <p>Some contents...</p>
