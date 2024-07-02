@@ -19,6 +19,7 @@ import "./style.css";
 import useCategoryStore from "@/store/categories/page";
 import Link from "next/link";
 import useSubCategoryStore from "@/store/sub-categories/page";
+import { getAccessToken } from "@/helpers/auth-helpers";
 
 function Index() {
   const [open, setOpen] = useState(false);
@@ -27,6 +28,8 @@ function Index() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { getSubCategories } = useSubCategoryStore();
   const [subCategory, setSubCategory] = useState<any>([]);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+
   console.log(subCategory);
 
   const toggleDrawer = useCallback(() => {
@@ -49,6 +52,20 @@ function Index() {
   useEffect(() => {
     getCategories();
   }, [getCategories]);
+
+  const checkToken = async () => {
+    const token = getAccessToken();
+    return !!token;
+  };
+
+  useEffect(() => {
+    const verifyToken = async () => {
+      const authenticated = await checkToken();
+      setIsAuthenticated(authenticated);
+    };
+
+    verifyToken();
+  }, []);
 
   return (
     <header>
@@ -92,7 +109,7 @@ function Index() {
               />
             </Link>
 
-            <div className="xl:flex gap-4 items-center mt-4 md:mt-0">
+            <div className="flex gap-4 items-center mt-4 md:mt-0">
               <Button
                 onClick={toggleCategory}
                 className="category_btn bg-[#1EB91E] text-white text-sm font-bold py-3 px-6 h-12"
@@ -104,11 +121,13 @@ function Index() {
                 )}
                 Kategoriya
               </Button>
-              <Input
-                placeholder="Хочу купить..."
-                className="search_input"
-                prefix={<SearchOutlined />}
-              />
+              <div className=" hidden lg:inline">
+                <Input
+                  placeholder="Хочу купить..."
+                  className="search_input"
+                  prefix={<SearchOutlined />}
+                />
+              </div>
             </div>
 
             <div
@@ -144,12 +163,9 @@ function Index() {
                     <div className="flex flex-col justify-start items-center w-full px-5 mt-2">
                       {subCategory.map((e: any) => {
                         return (
-                          <Link href={"/#"} className="w-full">
+                          <Link href={"/#"} className="w-full" key={e.id}>
                             <div className="h-[65px] w-full mb-2 bg-[#F5F5F5] rounded-xl">
-                              <div
-                                key={e.id}
-                                className="pt-5 pl-5 items-center justify-center w-full flex flex-col"
-                              >
+                              <div className="pt-5 pl-5 items-center justify-center w-full flex flex-col">
                                 <div className="h-[50px] w-full">
                                   <Link href={`#`}>{e.name}</Link>
                                 </div>
@@ -194,13 +210,30 @@ function Index() {
                   <ShoppingCartOutlined className="text-lg text-black" />
                 </Avatar>
               </Badge>
-              <Link href="/login">
-                <Avatar
-                  size="large"
-                  icon={<UserOutlined className="text-lg text-black" />}
-                  className="bg-[#F0F0F0] cursor-pointer"
-                />
-              </Link>
+              <div>
+                {isAuthenticated ? (
+                  <>
+                    {" "}
+                    <Link href="/profile">
+                      <Avatar
+                        size="large"
+                        icon={<UserOutlined className="text-lg text-black" />}
+                        className="bg-[#F0F0F0] cursor-pointer"
+                      />
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Link href="/login">
+                      <Avatar
+                        size="large"
+                        icon={<UserOutlined className="text-lg text-black" />}
+                        className="bg-[#F0F0F0] cursor-pointer"
+                      />
+                    </Link>
+                  </>
+                )}
+              </div>
             </div>
 
             <div className="block xl:hidden">
@@ -211,15 +244,62 @@ function Index() {
       </div>
 
       <Drawer
-        title="Basic Drawer"
+        title=""
         placement="right"
         closable={true}
         onClose={toggleDrawer}
         open={drawerOpen}
       >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+        <div className="flex items-center gap-5 mt-4 md:mt-0 mb-[40px]">
+          <Badge count={2}>
+            <Avatar
+              shape="square"
+              size="large"
+              className="bg-[#F0F0F0] cursor-pointer"
+            >
+              <HeartOutlined className="text-lg text-black" />
+            </Avatar>
+          </Badge>
+          <Badge count={6}>
+            <Avatar
+              shape="square"
+              size="large"
+              className="bg-[#F0F0F0] cursor-pointer"
+            >
+              <BarChartOutlined className="text-lg text-black" />
+            </Avatar>
+          </Badge>
+          <Badge count={7}>
+            <Avatar
+              shape="square"
+              size="large"
+              className="bg-[#F0F0F0] cursor-pointer"
+            >
+              <ShoppingCartOutlined className="text-lg text-black" />
+            </Avatar>
+          </Badge>
+          <Link href="/login">
+            <Avatar
+              size="large"
+              icon={<UserOutlined className="text-lg text-black" />}
+              className="bg-[#F0F0F0] cursor-pointer"
+            />
+          </Link>
+        </div>
+        <ul className="flex flex-wrap gap-5 mb-[40px]">
+          <li className="w-[150px]">Biz haqimizda</li>
+          <li className="w-[150px]">Yetkazib berish</li>
+          <li className="w-[150px]">Shartnoma shartlari</li>
+          <li className="w-[150px]">Bizning kafolatlar</li>
+        </ul>
+        <div className="lg:hidden inline mt-[40px]">
+          <Input
+            placeholder="Хочу купить..."
+            className=""
+            size="large"
+            prefix={<SearchOutlined />}
+          />
+        </div>
       </Drawer>
     </header>
   );

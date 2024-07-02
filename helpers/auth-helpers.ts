@@ -2,13 +2,13 @@ import Cookies from "js-cookie"
 
 
 export const saveAccessToken = (accessToken: string) => {
-    Cookies.set("access_token", accessToken)
+    Cookies.set("token", accessToken)
 }
 
 export const getAccessToken = () => {
-    return Cookies.get("access_token")
+    return Cookies.get("token")
 }
 
 export const removeAccessToken = () => {
-    Cookies.remove("access_token")
+    Cookies.remove("token")
 }

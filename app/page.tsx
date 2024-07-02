@@ -37,7 +37,7 @@ export default function Home() {
 
       <div className="mt-[60px] categ ">
         <Container>
-          <div className="flex items-center flex-wrap justify-between gap-[20px] duration-200	">
+          <div className="flex items-center flex-wrap justify-between gap-[20px] duration-200	ml-[40px] lg:ml-0">
             {categories.slice(0, 5).map((e, i) => {
               return (
                 <Link
@@ -86,7 +86,7 @@ export default function Home() {
             </Button>
           </div>
 
-          <div className="mt-[24px]">
+          <div className="mt-[24px]  ml-[120px] lg:ml-0">
             <Swiper />
           </div>
         </Container>
@@ -101,7 +101,7 @@ export default function Home() {
             </Button>
           </div>
 
-          <div className="mt-[24px]">
+          <div className="mt-[24px] ml-[120px] lg:ml-0">
             <Swiper />
           </div>
         </Container>
@@ -116,7 +116,7 @@ export default function Home() {
             </Button>
           </div>
 
-          <div className="mt-[24px]">
+          <div className="mt-[24px] ml-[120px] lg:ml-0">
             <Swiper />
           </div>
         </Container>

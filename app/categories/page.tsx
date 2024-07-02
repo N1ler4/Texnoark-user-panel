@@ -1,14 +1,30 @@
 "use client";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import Container from "../../components/container/page";
 import ProductCard from "../../components/products/page";
+import { Button, Input, Avatar, Badge, Drawer } from "antd";
 import { Slider } from "antd";
 import { Radio } from "antd";
+import {
+  BarChartOutlined,
+  HeartOutlined,
+  MenuOutlined,
+  SearchOutlined,
+  ShoppingCartOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 import "./style.css";
+import Link from "next/link";
 
 function Index() {
   const [slide1, setSlide1] = useState(3000000); // Default value in millions
   const [slide2, setSlide2] = useState(13000000); // Default value in millions
+
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const toggleDrawer = useCallback(() => {
+    setDrawerOpen((prevState) => !prevState);
+  }, []);
 
   const convertToSliderValue = (value: any) =>
     Math.round((value - 40000) / 10000);
@@ -36,10 +52,10 @@ function Index() {
           </span>
         </p>
       </Container>
-      <div className="mt-[24px]">
+      <div className="mt-[24px] h-auto">
         <Container>
           <div className="flex gap-[48px] justify-between">
-            <div className="w-[356px] h-[1467px] rounded-[10px] bg-[white] p-[40px]">
+            <div className="w-[356px] h-[auto] rounded-[10px] bg-[white] p-[40px]">
               <p className="flex gap-2 items-center mb-[20px]">
                 <span className="font-bold text-[14px] lg:text-[24px]">
                   Narx
@@ -278,6 +294,64 @@ function Index() {
           </div>
         </Container>
       </div>
+      <Drawer
+        title=""
+        placement="right"
+        closable={true}
+        onClose={toggleDrawer}
+        open={drawerOpen}
+      >
+        <div className="flex items-center gap-5 mt-4 md:mt-0 mb-[40px]">
+          <Badge count={2}>
+            <Avatar
+              shape="square"
+              size="large"
+              className="bg-[#F0F0F0] cursor-pointer"
+            >
+              <HeartOutlined className="text-lg text-black" />
+            </Avatar>
+          </Badge>
+          <Badge count={6}>
+            <Avatar
+              shape="square"
+              size="large"
+              className="bg-[#F0F0F0] cursor-pointer"
+            >
+              <BarChartOutlined className="text-lg text-black" />
+            </Avatar>
+          </Badge>
+          <Badge count={7}>
+            <Avatar
+              shape="square"
+              size="large"
+              className="bg-[#F0F0F0] cursor-pointer"
+            >
+              <ShoppingCartOutlined className="text-lg text-black" />
+            </Avatar>
+          </Badge>
+          <Link href="/login">
+            <Avatar
+              size="large"
+              icon={<UserOutlined className="text-lg text-black" />}
+              className="bg-[#F0F0F0] cursor-pointer"
+            />
+          </Link>
+        </div>
+        <ul className="flex flex-wrap gap-5 mb-[40px]">
+          <li className="w-[150px]">Biz haqimizda</li>
+          <li className="w-[150px]">Yetkazib berish</li>
+          <li className="w-[150px]">Shartnoma shartlari</li>
+          <li className="w-[150px]">Bizning kafolatlar</li>
+        </ul>
+        <div className="lg:hidden inline mt-[40px]">
+          <Input
+            placeholder="Хочу купить..."
+            className=""
+            size="large"
+            prefix={<SearchOutlined />}
+          />
+        </div>
+      </Drawer>
     </div>
   );
 }

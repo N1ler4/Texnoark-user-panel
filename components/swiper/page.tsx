@@ -1,11 +1,8 @@
 "use client";
 import React from "react";
-
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
@@ -17,7 +14,7 @@ export default function App() {
   return (
     <>
       <Swiper
-        spaceBetween={20}
+        spaceBetween={30} // Set a default space between slides
         slidesPerView={1}
         onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => console.log(swiper)}
@@ -27,17 +24,17 @@ export default function App() {
         autoplay
         centeredSlidesBounds={true}
         breakpoints={{
-          640: {
-            slidesPerView: 2,
-            spaceBetween: 30,
-          },
           768: {
+            slidesPerView: 2,
+            spaceBetween: 30, // Maintain consistent spacing at each breakpoint
+          },
+          860: {
             slidesPerView: 3,
-            spaceBetween: 40,
+            spaceBetween: 40, // Adjust space if needed for different screen sizes
           },
           1024: {
             slidesPerView: 4,
-            spaceBetween: 50,
+            spaceBetween: 50, // Adjust space if needed for different screen sizes
           },
         }}
         modules={[FreeMode, Pagination]}

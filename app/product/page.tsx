@@ -1,19 +1,22 @@
-"use client"
-import React, { useState } from "react";
+"use client";
+import React, { useCallback, useState } from "react";
 import Container from "../../components/container/page";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import "./style.css";
-import { Avatar, Button, Carousel, Tooltip } from "antd";
+import { Avatar, Badge, Button, Carousel, Drawer, Input, Tooltip } from "antd";
 import Image from "next/image";
 import Car from "@/images/car.svg";
 import Shop from "@/images/shop.svg";
 import Time from "@/images/time.svg";
-import { UserOutlined } from "@ant-design/icons";
-import Banner3 from '@/images/banner3.png'
-import Swiper from '../../components/swiper/page'
+
+import Banner3 from "@/images/banner3.png";
+import Swiper from "../../components/swiper/page";
+import Link from "next/link";
 
 function Product() {
+
+
   const images = [
     {
       original:
@@ -238,33 +241,40 @@ function Product() {
                   </div>
                 </div>
               ) : (
-                <div className="flex flex-col gap-[20px] mt-[40px]">
-                  
-                </div>
+                <div className="flex flex-col gap-[20px] mt-[40px]"></div>
               )}
             </div>
             <div className="w-[520px] h-[542px]">
-            <Carousel arrows infinite={true} autoplay={true} className='rounded-lg overflow-hidden product-carousel mt-[40px]'>   
-                  <div className='carousel'>
-                      <Image src={Banner3} alt="Banner"/>
-                  </div>
-                  <div className='carousel'>
-                      <Image src={Banner3} alt="Banner"/>
-                  </div>
-                  <div className='carousel'>
-                      <Image src={Banner3} alt="Banner"/>
-                  </div>    
-            </Carousel>
+              <Carousel
+                arrows
+                infinite={true}
+                autoplay={true}
+                className="rounded-lg overflow-hidden product-carousel mt-[40px]"
+              >
+                <div className="carousel">
+                  <Image src={Banner3} alt="Banner" />
+                </div>
+                <div className="carousel">
+                  <Image src={Banner3} alt="Banner" />
+                </div>
+                <div className="carousel">
+                  <Image src={Banner3} alt="Banner" />
+                </div>
+              </Carousel>
             </div>
           </div>
         </Container>
       </div>
       <div className="mt-[120px]">
         <Container>
-          <h1 className='font-bold text-[32px] mb-[24px]'>Aksiyadagi mahsulotlar</h1>
-          <Swiper/>
+          <h1 className="font-bold text-[32px] mb-[24px]">
+            Aksiyadagi mahsulotlar
+          </h1>
+          <Swiper />
         </Container>
       </div>
+
+
     </>
   );
 }

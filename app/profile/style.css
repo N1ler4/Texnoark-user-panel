@@ -1,0 +1,67 @@
+/* style.css */
+body {
+  background-color: #f9f9f9;
+}
+
+.ant-form-item {
+  margin-bottom: 16px;
+}
+
+.ant-input,
+.ant-select-selector,
+.ant-radio-group {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.ant-radio-wrapper {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.ant-btn-primary {
+  background-color: #ff800b;
+  border-color: #ff800b;
+  border-radius: 8px;
+}
+
+.ant-upload-list-picture .ant-upload-list-item {
+  border-radius: 8px;
+}
+
+.ant-slider-track {
+  background-color: #d55200 !important; /* Change track color */
+}
+
+.ant-slider-handle {
+  border-color: #d55200 !important; /* Change handle border color */
+  background-color: #d55200 !important; /* Change handle color */
+}
+
+.ant-slider-rail {
+  background-color: #d5520054 !important; /* Change rail (the full track) color */
+}
+
+.ant-slider-dot-active {
+  border-color: #d55200 !important; /* Change active dot color */
+}
+
+.ant-slider-dot:hover {
+  border-color: #d55200 !important; /* Adjust dot border color on hover */
+}
+.ant-slider {
+  width: 100%; /* Adjust slider width */
+}
+
+.ant-radio-checked .ant-radio-inner {
+  background-color: #d55200 !important;
+  border-color: #d55200 !important;
+}
+
+.ant-radio:hover .ant-radio-inner {
+  border-color: #d55200 !important;
+}
+
+.ant-radio-checked:hover .ant-radio-inner {
+  background-color: #d55200 !important;
+}
