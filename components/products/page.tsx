@@ -10,7 +10,7 @@ import Product from "../../images/product.png";
 import "./style.css";
 import Link from "next/link";
 
-function page() {
+function page({img , name , cost}:any) {
   return (
     <Link href={"/product"}>
       <div className="w-[305px] h-[490px] pt-[50px] pb-[36px] px-[30px] bg-white rounded-xl ">
@@ -22,9 +22,9 @@ function page() {
           />
         </div>
         <p className="mt-[36px] text-[16px] mb-[16px]">
-          Noutbuk Apple MacBook Pro 14 M1 MKGP3RU/A
+          Noutbook
         </p>
-        <h4 className="font-bold text-[18px] ">29 699 999 so‘m</h4>
+        <h4 className="font-bold text-[18px] ">1 999 999 so'm</h4>
         <p className="text-[#1EB91E] mt-[11px] mb-[19px] bg-[#1EB91E14] inline-block py-2 px-4 rounded-lg">
           1 134 890 so’mdan/12 oy
         </p>

@@ -47,7 +47,7 @@ export default function Home() {
                     localStorage.setItem("CategoryId", JSON.stringify(e.id))
                   }
                 >
-                  <div className="duration-200 hover:scale-105 flex items-center justify-between w-[440px] h-[120px] py-[45px] px-[59px] bg-white rounded-xl cursor-pointer card">
+                  <div className="duration-200 hover:scale-105 flex items-center justify-between w-[350px] lg:w-[440px] h-[100px] lg:h-[120px] py-[45px] px-[59px] bg-white rounded-xl cursor-pointer card">
                     <Image
                       src={iconCategory[i]}
                       alt="Logo"
@@ -67,7 +67,7 @@ export default function Home() {
                 localStorage.setItem("CategoryId", JSON.stringify(0))
               }
             >
-              <div className="duration-200 hover:scale-105 flex items-center justify-between w-[440px] h-[120px] py-[45px] px-[59px] bg-white rounded-xl cursor-pointer card">
+              <div className="duration-200 hover:scale-105 flex items-center justify-between w-[350px] lg:w-[440px] h-[100px] lg:h-[120px] py-[45px] px-[59px] bg-white rounded-xl cursor-pointer card">
                 <MenuOutlined className="w-[60px] h-[60px] bg-[#FF800B1A] rounded-full p-[20px] text-[#D55200]" />
                 Hammasi
                 <ArrowRightOutlined />
@@ -80,13 +80,15 @@ export default function Home() {
       <div className="mt-[64px]">
         <Container>
           <div className="flex justify-between items-center">
-            <h1 className="font-bold text-[32px] sm:text-[16px]">Ommabob mahsulotlar</h1>
+            <h1 className="font-bold text-[32px] sm:text-[16px]">
+              Ommabob mahsulotlar
+            </h1>
             <Button className="btn_all">
               Hammasi <ArrowRightOutlined />
             </Button>
           </div>
 
-          <div className="mt-[24px]  ml-[120px] lg:ml-0">
+          <div className="mt-[24px] lg:px-0 px-[60px] lg:ml-0">
             <Swiper />
           </div>
         </Container>
@@ -101,7 +103,7 @@ export default function Home() {
             </Button>
           </div>
 
-          <div className="mt-[24px] ml-[120px] lg:ml-0">
+          <div className="mt-[24px] lg:px-0 px-[60px] lg:ml-0">
             <Swiper />
           </div>
         </Container>
@@ -116,7 +118,7 @@ export default function Home() {
             </Button>
           </div>
 
-          <div className="mt-[24px] ml-[120px] lg:ml-0">
+          <div className="mt-[24px] px-[60px] lg:px-0 lg:ml-0">
             <Swiper />
           </div>
         </Container>

@@ -5,6 +5,7 @@ import ProductCard from "../../components/products/page";
 import { Button, Input, Avatar, Badge, Drawer } from "antd";
 import { Slider } from "antd";
 import { Radio } from "antd";
+import FilterDrawer from "@/components/drawer/page";
 import {
   BarChartOutlined,
   HeartOutlined,
@@ -22,7 +23,7 @@ function Index() {
 
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const toggleDrawer = useCallback(() => {
+  const toggleFilter = useCallback(() => {
     setDrawerOpen((prevState) => !prevState);
   }, []);
 
@@ -43,19 +44,29 @@ function Index() {
   return (
     <div>
       <Container>
-        <p className="flex gap-[20px] mt-[20px]">
-          <span className="block px-[18px] py-[6px] rounded bg-[#F5F5F5] text-[#240E0066] font-medium">
-            Bosh sahifa
-          </span>
-          <span className="block px-[18px] py-[6px] rounded bg-[white] font-medium">
-            Smartfonlar
-          </span>
-        </p>
+        <div className="flex justify-between items-center mt-[20px]">
+          <p className="flex gap-[20px]">
+            <span className="block px-[18px] py-[6px] rounded bg-[#F5F5F5] text-[#240E0066] font-medium">
+              Bosh sahifa
+            </span>
+            <span className="block px-[18px] py-[6px] rounded bg-[white] font-medium">
+              Smartfonlar
+            </span>
+          </p>
+          <Button
+            type="primary"
+            onClick={toggleFilter}
+            style={{ background: "#D55200", border: "#D55200", color: "white" }}
+            className="block lg:hidden rounded bg-[#F5F5F5] text-[#240E0066] font-medium"
+          >
+            Filter
+          </Button>
+        </div>
       </Container>
       <div className="mt-[24px] h-auto">
         <Container>
           <div className="flex gap-[48px] justify-between">
-            <div className="w-[356px] h-[auto] rounded-[10px] bg-[white] p-[40px]">
+            <div className="w-[356px] h-[auto] rounded-[10px] bg-[white] p-[40px] hidden lg:block">
               <p className="flex gap-2 items-center mb-[20px]">
                 <span className="font-bold text-[14px] lg:text-[24px]">
                   Narx
@@ -285,7 +296,6 @@ function Index() {
                 </Radio.Group>
               </div>
             </div>
-
             <div className=" flex flex-wrap ml-7 sm:ml-2 md:ml-0  gap-[20px] w-[956px] mx-auto justify-center items-center">
               {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((e, i) => (
                 <ProductCard key={i} />
@@ -296,60 +306,13 @@ function Index() {
       </div>
       <Drawer
         title=""
-        placement="right"
+        placement="left"
         closable={true}
-        onClose={toggleDrawer}
+        onClose={toggleFilter}
         open={drawerOpen}
       >
-        <div className="flex items-center gap-5 mt-4 md:mt-0 mb-[40px]">
-          <Badge count={2}>
-            <Avatar
-              shape="square"
-              size="large"
-              className="bg-[#F0F0F0] cursor-pointer"
-            >
-              <HeartOutlined className="text-lg text-black" />
-            </Avatar>
-          </Badge>
-          <Badge count={6}>
-            <Avatar
-              shape="square"
-              size="large"
-              className="bg-[#F0F0F0] cursor-pointer"
-            >
-              <BarChartOutlined className="text-lg text-black" />
-            </Avatar>
-          </Badge>
-          <Badge count={7}>
-            <Avatar
-              shape="square"
-              size="large"
-              className="bg-[#F0F0F0] cursor-pointer"
-            >
-              <ShoppingCartOutlined className="text-lg text-black" />
-            </Avatar>
-          </Badge>
-          <Link href="/login">
-            <Avatar
-              size="large"
-              icon={<UserOutlined className="text-lg text-black" />}
-              className="bg-[#F0F0F0] cursor-pointer"
-            />
-          </Link>
-        </div>
-        <ul className="flex flex-wrap gap-5 mb-[40px]">
-          <li className="w-[150px]">Biz haqimizda</li>
-          <li className="w-[150px]">Yetkazib berish</li>
-          <li className="w-[150px]">Shartnoma shartlari</li>
-          <li className="w-[150px]">Bizning kafolatlar</li>
-        </ul>
-        <div className="lg:hidden inline mt-[40px]">
-          <Input
-            placeholder="Хочу купить..."
-            className=""
-            size="large"
-            prefix={<SearchOutlined />}
-          />
+        <div>
+          <FilterDrawer />
         </div>
       </Drawer>
     </div>

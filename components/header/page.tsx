@@ -143,13 +143,13 @@ function Index() {
                       onClick={() => handleCategoryClick(index, category.id)}
                     >
                       {active === index ? (
-                        <div className="bg-[#D55200] mt-2 flex items-center justify-between w-full md:w-[440px] h-[50px] py-8 px-4 rounded-xl cursor-pointer card">
+                        <div className="bg-[#D55200] mt-2 flex items-center justify-between w-[200px] md:w-[400px] h-[50px] py-8 px-4 rounded-xl cursor-pointer card text-[14px]">
                           <PhoneOutlined className="w-15 h-15 bg-[#FF800B1A] rounded-full p-5 text-[#FFFFFF]" />
                           <p className="text-white">{category.name}</p>
                           <ArrowRightOutlined className="text-white" />
                         </div>
                       ) : (
-                        <div className="mt-2 flex items-center justify-between w-full md:w-[440px] h-[50px] py-8 px-4 bg-white rounded-xl cursor-pointer card hover:bg-[#f2f2f2]">
+                        <div className="mt-2 flex items-center justify-between w-[200px] md:w-[400px] h-[50px] py-8 px-4 bg-white rounded-xl cursor-pointer card hover:bg-[#f2f2f2] text-[14px]">
                           <PhoneOutlined className="w-15 h-15 bg-[#FF800B1A] rounded-full p-5 text-[#D55200]" />
                           <p>{category.name}</p>
                           <ArrowRightOutlined />
@@ -165,7 +165,7 @@ function Index() {
                         return (
                           <Link href={"/#"} className="w-full" key={e.id}>
                             <div className="h-[65px] w-full mb-2 bg-[#F5F5F5] rounded-xl">
-                              <div className="pt-5 pl-5 items-center justify-center w-full flex flex-col">
+                              <div className="py-5 pl-5 items-center justify-center w-full flex flex-col">
                                 <div className="h-[50px] w-full">
                                   <Link href={`#`}>{e.name}</Link>
                                 </div>
