@@ -12,13 +12,14 @@ import { FreeMode, Pagination } from "swiper/modules";
 import useProductStore from "@/store/products/page";
 
 export default function App() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<any>([]);
+  console.log(data)
   const { getProduct } = useProductStore();
 
   const getData = async () => {
     const res = await getProduct("", 10, 1);
     if (res && res.status === 200) {
-      setData(res.data);
+      setData(res.data.data.products);
     }
   };
 
@@ -59,25 +60,17 @@ export default function App() {
         modules={[FreeMode, Pagination]}
         className="mySwiper"
       >
-
-        <SwiperSlide>
-          <ProductCard />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ProductCard />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ProductCard />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ProductCard />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ProductCard />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ProductCard />
-        </SwiperSlide>
+        {data.length > 0 ? (
+          data.map((product:any) => (
+            <SwiperSlide key={product.id}>
+              <ProductCard img={product.images[0]} name={product.name} cost={product.price}/>
+            </SwiperSlide>
+          ))
+        ) : (
+          <SwiperSlide>
+            <div>No products available</div>
+          </SwiperSlide>
+        )}
       </Swiper>
     </>
   );

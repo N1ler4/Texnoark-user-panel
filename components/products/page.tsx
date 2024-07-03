@@ -6,7 +6,6 @@ import {
 import { Avatar, Badge, Button } from "antd";
 import Image from "next/image";
 import React from "react";
-import Product from "../../images/product.png";
 import "./style.css";
 import Link from "next/link";
 
@@ -16,15 +15,17 @@ function page({img , name , cost}:any) {
       <div className="w-[305px] h-[490px] pt-[50px] pb-[36px] px-[30px] bg-white rounded-xl ">
         <div className="w-[150px] h-[160px] mx-auto">
           <Image
-            src={Product}
+            src={img}
             alt="IMG"
-            className="w-[150px] h-[100px] duration-200 hover:scale-110  overline-hidden"
+            className="max-h-[180px] duration-200 hover:scale-110  overline-hidden object-cover"
+            width={150}
+            height={100}
           />
         </div>
         <p className="mt-[36px] text-[16px] mb-[16px]">
-          Noutbook
+          {name}
         </p>
-        <h4 className="font-bold text-[18px] ">1 999 999 so'm</h4>
+        <h4 className="font-bold text-[18px] ">{cost} so'm</h4>
         <p className="text-[#1EB91E] mt-[11px] mb-[19px] bg-[#1EB91E14] inline-block py-2 px-4 rounded-lg">
           1 134 890 so’mdan/12 oy
         </p>
