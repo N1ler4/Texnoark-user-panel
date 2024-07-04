@@ -183,15 +183,40 @@ function Index() {
             </div>
 
             <div className="hidden xl:flex items-center gap-3 mt-4 md:mt-0">
-              <Badge count={2}>
-                <Avatar
-                  shape="square"
-                  size="large"
-                  className="bg-[#F0F0F0] cursor-pointer"
-                >
-                  <HeartOutlined className="text-lg text-black" />
-                </Avatar>
-              </Badge>
+              <div>
+                {isAuthenticated ? (
+                  <Link href={"/profile"}>
+                    {" "}
+                    <Badge count={2}>
+                      <Avatar
+                        shape="square"
+                        size="large"
+                        className="bg-[#F0F0F0] cursor-pointer"
+                        onClick={() => {
+                          localStorage.setItem(
+                            "aboutus",
+                            "Yoqtirgan mahsulotlar"
+                          );
+                        }}
+                      >
+                        <HeartOutlined className="text-lg text-black" />
+                      </Avatar>
+                    </Badge>
+                  </Link>
+                ) : (
+                  <Link href={"/login"}>
+                    <Badge count={2}>
+                      <Avatar
+                        shape="square"
+                        size="large"
+                        className="bg-[#F0F0F0] cursor-pointer"
+                      >
+                        <HeartOutlined className="text-lg text-black" />
+                      </Avatar>
+                    </Badge>
+                  </Link>
+                )}
+              </div>
               <Badge count={6}>
                 <Avatar
                   shape="square"
@@ -219,6 +244,9 @@ function Index() {
                         size="large"
                         icon={<UserOutlined className="text-lg text-black" />}
                         className="bg-[#F0F0F0] cursor-pointer"
+                        onClick={() => {
+                          localStorage.setItem("aboutus", "Shaxsiy malumotlar");
+                        }}
                       />
                     </Link>
                   </>
@@ -251,15 +279,37 @@ function Index() {
         open={drawerOpen}
       >
         <div className="flex items-center gap-5 mt-4 md:mt-0 mb-[40px]">
-          <Badge count={2}>
-            <Avatar
-              shape="square"
-              size="large"
-              className="bg-[#F0F0F0] cursor-pointer"
-            >
-              <HeartOutlined className="text-lg text-black" />
-            </Avatar>
-          </Badge>
+          <div>
+            {isAuthenticated ? (
+              <Link href={"/profile"}>
+                {" "}
+                <Badge count={2}>
+                  <Avatar
+                    shape="square"
+                    size="large"
+                    className="bg-[#F0F0F0] cursor-pointer"
+                    onClick={() => {
+                      localStorage.setItem("aboutus", "Yoqtirgan mahsulotlar");
+                    }}
+                  >
+                    <HeartOutlined className="text-lg text-black" />
+                  </Avatar>
+                </Badge>
+              </Link>
+            ) : (
+              <Link href={"/login"}>
+                <Badge count={2}>
+                  <Avatar
+                    shape="square"
+                    size="large"
+                    className="bg-[#F0F0F0] cursor-pointer"
+                  >
+                    <HeartOutlined className="text-lg text-black" />
+                  </Avatar>
+                </Badge>
+              </Link>
+            )}
+          </div>
           <Badge count={6}>
             <Avatar
               shape="square"
@@ -278,13 +328,33 @@ function Index() {
               <ShoppingCartOutlined className="text-lg text-black" />
             </Avatar>
           </Badge>
-          <Link href="/login">
-            <Avatar
-              size="large"
-              icon={<UserOutlined className="text-lg text-black" />}
-              className="bg-[#F0F0F0] cursor-pointer"
-            />
-          </Link>
+          <div>
+            {isAuthenticated ? (
+              <>
+                {" "}
+                <Link href="/profile">
+                  <Avatar
+                    size="large"
+                    icon={<UserOutlined className="text-lg text-black" />}
+                    className="bg-[#F0F0F0] cursor-pointer"
+                    onClick={() => {
+                      localStorage.setItem("aboutus", "Shaxsiy malumotlar");
+                    }}
+                  />
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link href="/login">
+                  <Avatar
+                    size="large"
+                    icon={<UserOutlined className="text-lg text-black" />}
+                    className="bg-[#F0F0F0] cursor-pointer"
+                  />
+                </Link>
+              </>
+            )}
+          </div>
         </div>
         <ul className="flex flex-wrap gap-5 mb-[40px]">
           <li className="w-[150px]">Biz haqimizda</li>

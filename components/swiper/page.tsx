@@ -30,7 +30,7 @@ export default function App() {
   return (
     <>
       <Swiper
-        spaceBetween={30} // Set a default space between slides
+        spaceBetween={30}
         slidesPerView={1}
         onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => console.log(swiper)}
@@ -63,7 +63,7 @@ export default function App() {
         {data.length > 0 ? (
           data.map((product:any) => (
             <SwiperSlide key={product.id}>
-              <ProductCard img={product.images[0]} name={product.name} cost={product.price}/>
+              <ProductCard img={product.images[0]} name={product.name} cost={product.price} id={product.id}/>
             </SwiperSlide>
           ))
         ) : (

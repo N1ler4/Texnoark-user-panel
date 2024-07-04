@@ -1,21 +1,46 @@
 "use client";
 import Container from "@/components/container/page";
 import { RightOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "@/components/products/page";
+import useLikeStore from "@/store/like";
+import { getId } from "@/helpers/auth-helpers";
 
 export default function page() {
-  const [aboutactive, setAboutActive] = useState("Shaxsiy malumotlar");
+  const [data, setData] = useState<any>([]);
+  const [aboutactive, setAboutActive] = useState(
+    localStorage.getItem("aboutus") || "Shaxsiy malumotlar"
+  );
+  const { getLike } = useLikeStore();
+
+  const id = getId();
+
   const arr = [
     "Shaxsiy malumotlar",
     "Yoqtirgan mahsulotlar",
     "Xaridlar tarixi",
     "To’lovlar tarixi",
   ];
-  const cardCount = []
+  const cardCount = [];
   for (let i = 1; i < 10; i++) {
     cardCount.push(i);
   }
+
+  const getLikedProducts = async () => {
+    try {
+      const res = await getLike(id);
+      console.log(res);
+      if (res && res.status === 200) {
+        setData(res?.data?.data?.likes);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    getLikedProducts();
+  }, []);
 
   return (
     <>
@@ -25,7 +50,7 @@ export default function page() {
             Bosh sahifa
           </div>
           <div className="px-[18px] py-[8px] rounded-md text-[#240E00CC] bg-[#FFFFFF] grid justify-center items-center">
-            Accout
+            Account
           </div>
         </div>
       </Container>
@@ -84,9 +109,22 @@ export default function page() {
           )}
           {aboutactive == "Yoqtirgan mahsulotlar" && (
             <div className="flex flex-wrap justify-around w-[70%] gap-2">
-              {cardCount.map(e=>{
-                return <Card key={e} />
-              })}
+              {data.length ? (
+                data?.map((e: any, i: any) => {
+                  const product = e.product_id;
+                  return (
+                    <Card
+                      key={i}
+                      img={product?.images?.[0]}
+                      name={product.name}
+                      cost={product.price}
+                      id={product.id}
+                    />
+                  );
+                })
+              ) : (
+                <>You have not any liked products</>
+              )}
             </div>
           )}
         </div>

@@ -7,11 +7,17 @@ import { Avatar, Badge, Button } from "antd";
 import Image from "next/image";
 import React from "react";
 import "./style.css";
-import Link from "next/link";
+import useLikeStore from "@/store/like";
 
-function page({img , name , cost}:any) {
+function page({img , name , cost , id}:any) {
+
+  const {postLike} = useLikeStore()
+
+  const postData = {
+    product_id : id
+  }  
+
   return (
-    <Link href={"/product"}>
       <div className="w-[305px] h-[490px] pt-[50px] pb-[36px] px-[30px] bg-white rounded-xl ">
         <div className="w-[150px] h-[160px] mx-auto">
           <Image
@@ -38,8 +44,9 @@ function page({img , name , cost}:any) {
               shape="square"
               size="large"
               className="bg-[#F0F0F0] cursor-pointer"
+              onClick={() => postLike(postData)}
             >
-              <HeartOutlined className="text-[20px] text-[black]" />
+              <HeartOutlined className="text-[20px] text-[black]" />  
             </Avatar>
           </Badge>
           <Badge>
@@ -53,7 +60,6 @@ function page({img , name , cost}:any) {
           </Badge>
         </div>
       </div>
-    </Link>
   );
 }
 
