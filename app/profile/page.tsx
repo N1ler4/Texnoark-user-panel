@@ -5,15 +5,27 @@ import { useEffect, useState } from "react";
 import Card from "@/components/products/page";
 import useLikeStore from "@/store/like";
 import { getId } from "@/helpers/auth-helpers";
+import useAuthStore from "@/store/auth";
+
 
 export default function page() {
   const [data, setData] = useState<any>([]);
+  const [admin, setAdmin] = useState<any>([]);
   const [aboutactive, setAboutActive] = useState(
     localStorage.getItem("aboutus") || "Shaxsiy malumotlar"
   );
   const { getLike } = useLikeStore();
+  const { getAdmin } = useAuthStore();
 
   const id = getId();
+
+  const getSingleData = async () => {
+    const res = await getAdmin(id);
+    if (res && res.status === 200) {
+      setAdmin(res.data.data);
+    }
+  };
+
 
   const arr = [
     "Shaxsiy malumotlar",
@@ -40,6 +52,7 @@ export default function page() {
 
   useEffect(() => {
     getLikedProducts();
+    getSingleData();
   }, []);
 
   return (
@@ -80,16 +93,21 @@ export default function page() {
               <div className="flex flex-col gap-5">
                 <h1 className="text-[24px] font-bold">Shaxsiy malumotlar</h1>
                 <p className="text-[16px] text-[#240E00CC] flex gap-2 items-end">
-                  Ismi: <span className="text-[18px] font-bold">Ahmadboy</span>
+                  Ismi:{" "}
+                  <span className="text-[18px] font-bold">
+                    {admin.first_name}
+                  </span>
                 </p>
                 <p className="text-[16px] text-[#240E00CC] flex gap-2 items-end">
                   Fafilyasi:{" "}
-                  <span className="text-[18px] font-bold">Ben Bella</span>
+                  <span className="text-[18px] font-bold">
+                    {admin.last_name}
+                  </span>
                 </p>
                 <p className="text-[16px] text-[#240E00CC] flex gap-2 items-end">
                   Telfon raqami:{" "}
                   <span className="text-[18px] font-bold">
-                    +998 99 300 30 30
+                    {admin.phone_number}
                   </span>
                 </p>
                 <p className="text-[16px] text-[#240E00CC] flex gap-2 items-end">
@@ -108,14 +126,14 @@ export default function page() {
             </div>
           )}
           {aboutactive == "Yoqtirgan mahsulotlar" && (
-            <div className="flex flex-wrap justify-around w-[70%] gap-2">
+            <div className="flex flex-wrap w-[70%] gap-2 ">
               {data.length ? (
                 data?.map((e: any, i: any) => {
                   const product = e.product_id;
                   return (
                     <Card
                       key={i}
-                      img={product?.images?.[0]}
+                      img={product?.images[0]}
                       name={product.name}
                       cost={product.price}
                       id={product.id}
@@ -123,7 +141,7 @@ export default function page() {
                   );
                 })
               ) : (
-                <>You have not any liked products</>
+                <div className="text-center">You have not any liked products</div>
               )}
             </div>
           )}

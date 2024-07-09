@@ -19,7 +19,8 @@ import "./style.css";
 import useCategoryStore from "@/store/categories/page";
 import Link from "next/link";
 import useSubCategoryStore from "@/store/sub-categories/page";
-import { getAccessToken } from "@/helpers/auth-helpers";
+import { getAccessToken, getId } from "@/helpers/auth-helpers";
+import useLikeStore from "@/store/like";
 
 function Index() {
   const [open, setOpen] = useState(false);
@@ -29,6 +30,9 @@ function Index() {
   const { getSubCategories } = useSubCategoryStore();
   const [subCategory, setSubCategory] = useState<any>([]);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [count, setCount] = useState<any>();
+
+  const { getLike } = useLikeStore();
 
   console.log(subCategory);
 
@@ -67,6 +71,22 @@ function Index() {
     verifyToken();
   }, []);
 
+  const id = getId();
+
+  const getLikeCount = async () => {
+    const res = await getLike(id);
+    console.log(res);
+    if (res && res.status === 200) {
+      setCount(res.data.data.count);
+    }
+  };
+  useEffect(() => {
+    getLikeCount();
+  }, [getLikeCount]);
+  const handleAboutClick = () => {
+    localStorage.setItem("aboutus", "Texnoark haqida");
+  };
+
   return (
     <header>
       <div className="py-2 bg-[#F0F0F0]">
@@ -74,7 +94,12 @@ function Index() {
           <div className="hidden xl:flex justify-between items-center">
             <ul className="flex items-center gap-4 text-sm font-medium cursor-pointer">
               <li>
-                <Link href="/about">Biz Haqimizda</Link>
+                <Link
+                  href="/about"
+                  onClick={handleAboutClick}
+                >
+                  Biz Haqimizda
+                </Link>
               </li>
               <li>Yetkazib berish</li>
               <li>Shartnoma shartlari</li>
@@ -187,7 +212,7 @@ function Index() {
                 {isAuthenticated ? (
                   <Link href={"/profile"}>
                     {" "}
-                    <Badge count={2}>
+                    <Badge count={count}>
                       <Avatar
                         shape="square"
                         size="large"
@@ -226,15 +251,17 @@ function Index() {
                   <BarChartOutlined className="text-lg text-black" />
                 </Avatar>
               </Badge>
-              <Badge count={7}>
-                <Avatar
-                  shape="square"
-                  size="large"
-                  className="bg-[#F0F0F0] cursor-pointer"
-                >
-                  <ShoppingCartOutlined className="text-lg text-black" />
-                </Avatar>
-              </Badge>
+              <Link href={"/cart"}>
+                <Badge count={7}>
+                  <Avatar
+                    shape="square"
+                    size="large"
+                    className="bg-[#F0F0F0] cursor-pointer"
+                  >
+                    <ShoppingCartOutlined className="text-lg text-black" />
+                  </Avatar>
+                </Badge>
+              </Link>
               <div>
                 {isAuthenticated ? (
                   <>
@@ -283,7 +310,7 @@ function Index() {
             {isAuthenticated ? (
               <Link href={"/profile"}>
                 {" "}
-                <Badge count={2}>
+                <Badge count={count}>
                   <Avatar
                     shape="square"
                     size="large"
@@ -319,15 +346,17 @@ function Index() {
               <BarChartOutlined className="text-lg text-black" />
             </Avatar>
           </Badge>
-          <Badge count={7}>
-            <Avatar
-              shape="square"
-              size="large"
-              className="bg-[#F0F0F0] cursor-pointer"
-            >
-              <ShoppingCartOutlined className="text-lg text-black" />
-            </Avatar>
-          </Badge>
+          <Link href={"/cart"}>
+            <Badge count={7}>
+              <Avatar
+                shape="square"
+                size="large"
+                className="bg-[#F0F0F0] cursor-pointer"
+              >
+                <ShoppingCartOutlined className="text-lg text-black" />
+              </Avatar>
+            </Badge>
+          </Link>
           <div>
             {isAuthenticated ? (
               <>

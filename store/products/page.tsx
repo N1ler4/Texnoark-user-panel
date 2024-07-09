@@ -12,6 +12,16 @@ const useProductStore = create(() => ({
       console.error(error);
     }
   },
+  getSingleProduct:async(id:any)=>{
+    try {
+      const response = await http.get(`/products/${id}`);
+      if (response.status === 200) {
+        return response;
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }));
 
 export default useProductStore;

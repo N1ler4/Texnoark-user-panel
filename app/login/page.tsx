@@ -27,6 +27,7 @@ export default function Index() {
       saveAccessToken(res.data.data.tokens.access_token)
       saveId(res.data.data.data.id)
       router.push("/")
+      window.location.reload();
     }
   };
 

@@ -13,7 +13,6 @@ import useProductStore from "@/store/products/page";
 
 export default function App() {
   const [data, setData] = useState<any>([]);
-  console.log(data)
   const { getProduct } = useProductStore();
 
   const getData = async () => {

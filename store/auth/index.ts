@@ -14,9 +14,20 @@ const useAuthStore = create(() => ({
       console.error(error);
     }
   },
-  getLike: async (id: any) => {
+  signUp: async (data: any) => {
     try {
-      const response = await http.get(`/likes/user/likes/${id}`);
+      const response = await http.post(`/auth/user/sign-up`, data);
+      if (response.status === 201) {
+        message.success("Success!");
+        return response;
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  getAdmin: async (id: any) => {
+    try {
+      const response = await http.get(`/admin/${id}`);
       if (response.status === 200) {
         return response;
       }

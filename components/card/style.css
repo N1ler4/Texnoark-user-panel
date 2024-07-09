@@ -4,6 +4,7 @@
     padding: 27px 60px;
     display: flex;
     align-items: start;
+    justify-content: space-between;
     background-color: white;
     border-radius: 20px;
     margin-bottom: 20px;

@@ -7,7 +7,11 @@ const useLikeStore = create(() => ({
     try {
       const response = await http.post(`/likes/create` , data);
       if (response.status === 201) {
-        message.success("Liked")
+        if(response.data.message === "Like deleted successfully"){
+          message.success("Unliked successfully")
+        }else{
+          message.success("Liked successfully")
+        }
         return response;
       }
     } catch (error) {
