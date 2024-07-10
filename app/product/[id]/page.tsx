@@ -340,7 +340,7 @@ function Product() {
       <div className="mt-[64px]">
         <Container>
           <h3 className="text-[28px] font-bold text-[#240E00CC] mb-[34px]">
-            O'xshash mahsulotlar
+            Oxshash mahsulotlar
           </h3>
           <div className="relative">
             <Swiper />

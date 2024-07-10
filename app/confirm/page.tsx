@@ -89,7 +89,7 @@ export default function Page() {
                 ]}
               >
                 <Radio.Group>
-                  <Radio value="storePickup">Do'kondan olib ketish</Radio>
+                  <Radio value="storePickup">Dokondan olib ketish</Radio>
                   <Radio value="homeDelivery">
                     Xaridingizni uyingizga yetkazib berish
                   </Radio>
@@ -179,10 +179,10 @@ export default function Page() {
                 ]}
               >
                 <Radio.Group>
-                  <Radio value="cash">Naqd yetkazgandan so'ng to'lash</Radio>
+                  <Radio value="cash">Naqd yetkazgandan song tolash</Radio>
                   <Radio value="card">Karta orqali (Humo/Uzcard/Visa)</Radio>
                   <Radio value="installment">
-                    Muddatli to'lov (4/6/12/24 oyga)
+                    Muddatli tolov (4/6/12/24 oyga)
                   </Radio>
                 </Radio.Group>
               </Form.Item>
@@ -198,7 +198,7 @@ export default function Page() {
                   <Radio value="24">24 oy</Radio>
                 </Radio.Group>
                 <div style={{ marginTop: "8px", fontWeight: "bold" }}>
-                  6 oy / oyiga 6 879 789 so'mdan
+                  6 oy / oyiga 6 879 789 somdan
                 </div>
               </Form.Item>
 

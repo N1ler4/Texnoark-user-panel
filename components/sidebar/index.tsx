@@ -2,7 +2,7 @@
 import { Slider, Radio } from "antd";
 import React, { useState } from "react";
 
-export default function index() {
+export default function Index() {
   const [slide1, setSlide1] = useState(3000000); // Default value in millions
   const [slide2, setSlide2] = useState(13000000); // Default value in millions
   const convertToSliderValue = (value: any) =>

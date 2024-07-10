@@ -11,7 +11,7 @@ import useLikeStore from "@/store/like";
 import Link from "next/link";
 import useCartStore from "@/store/cart";
 
-function page({ img, name, cost, id }: any) {
+function Page({ img, name, cost, id }: any) {
   const { postLike } = useLikeStore();
   const { postCart } = useCartStore();
 
@@ -36,7 +36,7 @@ function page({ img, name, cost, id }: any) {
         </div>
       </Link>
       <p className="mt-[36px] text-[16px] mb-[16px]">{name}</p>
-      <h4 className="font-bold text-[18px] ">{cost} so'm</h4>
+      <h4 className="font-bold text-[18px] ">{cost} som</h4>
       <p className="text-[#1EB91E] mt-[11px] mb-[19px] bg-[#1EB91E14] inline-block py-2 px-4 rounded-lg">
         {Math.ceil(cost / 12)} so’mdan/12 oy
       </p>
@@ -69,4 +69,4 @@ function page({ img, name, cost, id }: any) {
   );
 }
 
-export default page;
+export default Page;

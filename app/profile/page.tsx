@@ -8,7 +8,7 @@ import { getId } from "@/helpers/auth-helpers";
 import useAuthStore from "@/store/auth";
 
 
-export default function page() {
+export default function Page() {
   const [data, setData] = useState<any>([]);
   const [admin, setAdmin] = useState<any>([]);
   const [aboutactive, setAboutActive] = useState(

@@ -2,7 +2,7 @@ import React from "react";
 import Container from "../../../components/container/page";
 import { Button, Input } from "antd";
 
-export default function index() {
+export default function Index() {
   return (
     <>
       <Container>

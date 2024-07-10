@@ -2,10 +2,7 @@
 import Carusel from "../components/carusel/page";
 import {
   ArrowRightOutlined,
-  BarChartOutlined,
-  HeartOutlined,
   MenuOutlined,
-  PhoneOutlined,
 } from "@ant-design/icons";
 import Container from "../components/container/page";
 import "./globals.css";

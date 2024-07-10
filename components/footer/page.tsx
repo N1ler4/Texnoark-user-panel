@@ -12,7 +12,7 @@ import {
 import Link from "next/link";
 import Cookies from "js-cookie";
 
-function page() {
+function Page() {
   return (
     <footer className="mt-[60px]">
       <Container>
@@ -112,4 +112,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

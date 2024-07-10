@@ -8,7 +8,7 @@ import { getId } from "@/helpers/auth-helpers";
 import { useEffect, useState } from "react";
 
 
-export default function page() {
+export default function Page() {
   const [data, setData] = useState<any>([]);
   const [totalSum, setTotalSum] = useState(0);
 
