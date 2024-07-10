@@ -41,7 +41,6 @@ export default function page() {
   const getLikedProducts = async () => {
     try {
       const res = await getLike(id);
-      console.log(res);
       if (res && res.status === 200) {
         setData(res?.data?.data?.likes);
       }
@@ -58,7 +57,7 @@ export default function page() {
   return (
     <>
       <Container>
-        <div className="flex gap-3 mt-5">
+        <div className="flex gap-3 mt-5 flex-wrap">
           <div className="px-[18px] py-[8px] rounded-md text-[#240E0066] bg-[#F5F5F5] grid justify-center items-center">
             Bosh sahifa
           </div>
@@ -68,8 +67,8 @@ export default function page() {
         </div>
       </Container>
       <Container>
-        <div className="flex gap-5 mt-10 w-full">
-          <div className="w-[30%] h-[424px] bg-white rounded-xl p-[30px]">
+        <div className="flex gap-2 mt-10 w-full flex-wrap">
+          <div className="w-[400px] h-[424px] bg-white rounded-xl p-[30px]">
             <div className="flex flex-col gap-[12px] mt-[24px]">
               {arr.map((e, i) => {
                 return (
@@ -89,7 +88,7 @@ export default function page() {
             </div>
           </div>
           {aboutactive == "Shaxsiy malumotlar" && (
-            <div className="w-[380px] h-[424px] bg-white rounded-xl p-[40px]">
+            <div className="max-w-[380px] w-full h-[424px] bg-white rounded-xl p-[40px]">
               <div className="flex flex-col gap-5">
                 <h1 className="text-[24px] font-bold">Shaxsiy malumotlar</h1>
                 <p className="text-[16px] text-[#240E00CC] flex gap-2 items-end">
@@ -126,7 +125,7 @@ export default function page() {
             </div>
           )}
           {aboutactive == "Yoqtirgan mahsulotlar" && (
-            <div className="flex flex-wrap w-[70%] gap-2 ">
+            <div className="flex flex-wrap w-[70%] gap-2  ">
               {data.length ? (
                 data?.map((e: any, i: any) => {
                   const product = e.product_id;

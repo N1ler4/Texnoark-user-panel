@@ -47,7 +47,7 @@ export default function Home() {
                     localStorage.setItem("CategoryId", JSON.stringify(e.id))
                   }
                 >
-                  <div className="duration-200 hover:scale-105 flex items-center justify-between w-[350px] lg:w-[440px] h-[100px] lg:h-[120px] py-[45px] px-[59px] bg-white rounded-xl cursor-pointer card">
+                  <div className="duration-200 hover:scale-105 flex items-center justify-between w-[300px] lg:w-[440px] h-[100px] lg:h-[120px] py-[45px] px-[59px] bg-white rounded-xl cursor-pointer card">
                     <Image
                       src={iconCategory[i]}
                       alt="Logo"
@@ -67,7 +67,7 @@ export default function Home() {
                 localStorage.setItem("CategoryId", JSON.stringify(0))
               }
             >
-              <div className="duration-200 hover:scale-105 flex items-center justify-between w-[350px] lg:w-[440px] h-[100px] lg:h-[120px] py-[45px] px-[59px] bg-white rounded-xl cursor-pointer card">
+              <div className="duration-200 hover:scale-105 flex items-center justify-between w-[300px] lg:w-[440px] h-[100px] lg:h-[120px] py-[45px] px-[59px] bg-white rounded-xl cursor-pointer card">
                 <MenuOutlined className="w-[60px] h-[60px] bg-[#FF800B1A] rounded-full p-[20px] text-[#D55200]" />
                 Hammasi
                 <ArrowRightOutlined />

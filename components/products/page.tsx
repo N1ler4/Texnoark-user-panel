@@ -23,9 +23,9 @@ function page({ img, name, cost, id }: any) {
   }
 
   return (
-    <div className="w-[305px] h-[490px] pt-[50px] pb-[36px] px-[30px] bg-white rounded-xl ">
+    <div className="max-w-[305px] w-full h-[490px] pt-[50px] pb-[36px] px-[30px] py-5 bg-white rounded-xl ">
       <Link href={`/product/${id}`}>
-        <div className="w-[150px] h-[160px] mx-auto">
+        <div className="max-w-[150px] w-full max-h-[160px] h-auto mx-auto">
           <Image
             src={img}
             alt="IMG"
@@ -40,7 +40,7 @@ function page({ img, name, cost, id }: any) {
       <p className="text-[#1EB91E] mt-[11px] mb-[19px] bg-[#1EB91E14] inline-block py-2 px-4 rounded-lg">
         {Math.ceil(cost / 12)} so’mdan/12 oy
       </p>
-      <div className="flex items-center justify-between gap-[10px]">
+      <div className="flex items-center justify-between gap-[10px] flex-wrap">
         <Button className="btn_product"
         onClick={()=> postCart(postCartData)}>
           Savat <ShoppingCartOutlined />

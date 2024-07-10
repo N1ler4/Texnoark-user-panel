@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import http from "../../api/interseptor";
 import { request_subcategory } from "@/interfaces/sub-categories";
+import { message } from "antd";
 
 const useSubCategoryStore = create<request_subcategory>((set) => ({
   subcategories: [],
@@ -11,7 +12,7 @@ const useSubCategoryStore = create<request_subcategory>((set) => ({
         return response;
       }
     } catch (err) {
-      console.log(err);
+      message.error(`${err}`);
     }
   },
   getSubCategoryById: async (id) => {
@@ -21,7 +22,7 @@ const useSubCategoryStore = create<request_subcategory>((set) => ({
         return response;
       }
     } catch (err) {
-      console.log(err);
+      message.error(`${err}`);
     }
   },
 }));

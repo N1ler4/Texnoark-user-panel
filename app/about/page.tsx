@@ -19,13 +19,13 @@ function Index() {
       <div>
         <Container>
           <p className="flex gap-[10px] mt-[20px]">
-            <span className="block px-[18px] py-[6px] rounded bg-[#F5F5F5] text-[#240E0066] font-medium">
+            <span className="block px-[18px] py-[6px] text-[12px] lg:text-[18px] rounded bg-[#F5F5F5] text-[#240E0066] font-medium">
               Bosh sahifa
             </span>
-            <span className="block px-[18px] py-[6px] rounded bg-[#F5F5F5] text-[#240E0066] font-medium">
+            <span className="block px-[18px] py-[6px] text-[12px] lg:text-[18px] rounded bg-[#F5F5F5] text-[#240E0066] font-medium">
               Smartfonlar
             </span>
-            <span className="block px-[18px] py-[6px] rounded bg-[white] font-medium">
+            <span className="block px-[18px] py-[6px] text-[12px] lg:text-[18px] rounded bg-[white] font-medium">
               Tashkilot haqida
             </span>
           </p>
@@ -33,7 +33,7 @@ function Index() {
       </div>
       <div>
         <Container>
-          <div className="flex gap-[12px] mt-[24px]">
+          <div className="flex gap-[12px] mt-[24px] flex-wrap">
             {arr.map((e, i) => {
               return (
                 <button
@@ -320,7 +320,7 @@ function Index() {
           </Container>
         </div>
       </div>
-      <div className="mt-[60px]">
+      <div className="mt-[60px] mx-10 lg:mx-0">
         <Container>
           <h1 className="font-bold text-[32px] mb-[24px]">
             Aksiyadagi mahsulotlar

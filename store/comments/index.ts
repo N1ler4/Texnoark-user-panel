@@ -17,6 +17,7 @@ const useCommentStore = create(() => ({
     try {
       const response = await http.post(`/comment/create`, data);
       if (response.status === 201) {
+        message.success("Comment posted successfully!");
         return response;
       }
     } catch (err) {

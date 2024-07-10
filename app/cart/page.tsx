@@ -10,7 +10,6 @@ import { useEffect, useState } from "react";
 
 export default function page() {
   const [data, setData] = useState<any>([]);
-  console.log(data)
   const [totalSum, setTotalSum] = useState(0);
 
 
@@ -22,7 +21,6 @@ export default function page() {
     const res = await getCart(product_id);
     if (res && res.status === 200) {
       setData(res.data.data.carts);
-      console.log(res);
     }
   };
 
@@ -52,8 +50,8 @@ export default function page() {
 
       <div className="mt-[51px]">
         <Container>
-          <div className="flex justify-between">
-            <div className="flex flex-col gap-4">
+          <div className="flex justify-between flex-wrap">
+            <div className="flex flex-col gap-4 mx-10 lg:mx-0">
               {data.length ? (
                 data.map((e: any, i: any) => (
                   <div key={i}>
@@ -70,7 +68,7 @@ export default function page() {
                 <></>
               )}
             </div>
-            <div className="w-[440px] h-[278px] p-[40px] bg-white rounded-xl">
+            <div className="w-full max-w-[440px] h-[300px] lg:h-[278px] p-[40px] bg-white rounded-xl">
               <h4 className="font-bold text-[24px] mb-[17px] ">
                 Sizni haridlaringiz
               </h4>
@@ -85,7 +83,7 @@ export default function page() {
                 <span className="text-[28px] font-bold ">{totalSum} so‘m</span>
               </p>
               <Link href={"/clearance"}>
-                <button className="w-[360px] bg-[#D55200] text-white rounded-md font-medium h-[54px]  mt-[24px]">
+                <button className="w-full max-w-[360px] bg-[#D55200] text-white rounded-md font-medium h-[54px]  mt-[24px]">
                   Xaridni rasmiylashtirish
                 </button>
               </Link>
@@ -94,7 +92,7 @@ export default function page() {
         </Container>
       </div>
 
-      <div className="mt-[60px]">
+      <div className="mt-[60px] mx-10 lg:mx-0">
         <Container>
           <h1 className="font-bold text-[32px] mb-[24px] max-sm:text-[20px]">
             Aksiyadagi mahsulotlar

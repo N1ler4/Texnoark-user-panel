@@ -24,7 +24,6 @@ function Product() {
   const [product, setData] = useState<any>({});
   const [comments, setComments] = useState("Telfon xususiyatlari");
   const [comment, setComment] = useState<any>([]);
-  console.log(comment);
 
   const { id } = useParams();
   const { getSingleProduct } = useProductStore();
@@ -38,7 +37,6 @@ function Product() {
   };
   const getCommentsData = async () => {
     const response = await getComments(id);
-    console.log(response);
     if (response && response.status === 200) {
       setComment(response.data.data.comment);
     }
@@ -63,7 +61,6 @@ function Product() {
     const res = await postComment(values)
     if (res && res.status === 201) {
       getCommentsData()
-      message.success("Successfully added comment")
     }
   };
 
@@ -86,8 +83,8 @@ function Product() {
       </div>
       <div className="mt-[24px]">
         <Container>
-          <div className="flex justify-between">
-            <div className="max-w-[700px] bg-white rounded-md w-full h-[560px]">
+          <div className="flex justify-between flex-wrap gap-10">
+            <div className="max-w-[700px] lg:max-w-[55%] bg-white rounded-md w-full h-[560px]">
               <ImageGallery
                 items={images}
                 infinite={true}
@@ -98,7 +95,7 @@ function Product() {
                 showNav={false}
               />
             </div>
-            <div className="w-[600px] bg-white h-[560px] p-[40px] rounded-md">
+            <div className="w-full max-w-[600px] lg:max-w-[40%] bg-white h-[auto] p-[40px] rounded-md">
               <h3 className="text-[24px] font-bold mb-[26px]">
                 {product.name}
               </h3>
@@ -160,7 +157,7 @@ function Product() {
                 comments == "Telfon xususiyatlari"
                   ? "bg-[#FF6F14] text-white duration-300"
                   : "bg-white text-[black] duration-300"
-              } py-[14px] px-[32px] rounded-[10px font-semibold rounded-[10px]`}
+              } py-0 px-0 lg:py-[14px] lg:px-[32px] rounded-[10px font-semibold rounded-[10px]`}
             >
               Telfon xususiyatlari
             </button>
@@ -179,7 +176,7 @@ function Product() {
       </div>
       <div>
         <Container>
-          <div className="flex justify-between w-full">
+          <div className="flex justify-between w-full flex-wrap">
             <div className="w-[820px] max-h-[560px] h-full">
               {comments == "Telfon xususiyatlari" && (
                 <div className="py-[60px] px-[80px]">
@@ -308,7 +305,7 @@ function Product() {
                 </div>
               )}
             </div>
-            <div className="w-[490px] h-[560px] mt-[60px]">
+            <div className="max-w-[490px] w-full h-full max-h-[560px] mt-[60px]">
               <Carousel
                 autoplay
                 dots={{ className: "custom-dots" }}

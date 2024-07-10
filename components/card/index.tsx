@@ -16,7 +16,7 @@ function Page({ img, name, price, likeId, id }: any) {
 
 
   return (
-    <div className="product-card">
+    <div className="product-card w-[300px] lg:w-[900px] lg:h-[200px] flex-wrap">
       <img className="product-image" src={img} alt={name} />
       <div className="flex flex-col max-w-[400px] w-full">
         <p className="product-title">{name}</p>

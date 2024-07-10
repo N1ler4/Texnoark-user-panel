@@ -21,6 +21,7 @@ import Link from "next/link";
 import useSubCategoryStore from "@/store/sub-categories/page";
 import { getAccessToken, getId } from "@/helpers/auth-helpers";
 import useLikeStore from "@/store/like";
+import useCartStore from "@/store/cart";
 
 function Index() {
   const [open, setOpen] = useState(false);
@@ -31,10 +32,12 @@ function Index() {
   const [subCategory, setSubCategory] = useState<any>([]);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [count, setCount] = useState<any>();
+  const [cartCount , setCartCount] = useState<any>()
+
 
   const { getLike } = useLikeStore();
+  const { getCart } = useCartStore()
 
-  console.log(subCategory);
 
   const toggleDrawer = useCallback(() => {
     setDrawerOpen((prevState) => !prevState);
@@ -75,17 +78,23 @@ function Index() {
 
   const getLikeCount = async () => {
     const res = await getLike(id);
-    console.log(res);
     if (res && res.status === 200) {
       setCount(res.data.data.count);
     }
   };
-  useEffect(() => {
-    getLikeCount();
-  }, [getLikeCount]);
   const handleAboutClick = () => {
     localStorage.setItem("aboutus", "Texnoark haqida");
   };
+  const getCartCount = async()=>{
+    const res = await getCart(id);
+    if(res && res.status === 200){
+      setCartCount(res.data.data.count);
+    }
+  }
+  useEffect(() => {
+    getLikeCount();
+    getCartCount()
+  }, [getLikeCount , getCartCount]);
 
   return (
     <header>
@@ -252,7 +261,7 @@ function Index() {
                 </Avatar>
               </Badge>
               <Link href={"/cart"}>
-                <Badge count={7}>
+                <Badge count={cartCount}>
                   <Avatar
                     shape="square"
                     size="large"
@@ -347,7 +356,7 @@ function Index() {
             </Avatar>
           </Badge>
           <Link href={"/cart"}>
-            <Badge count={7}>
+            <Badge count={cartCount}>
               <Avatar
                 shape="square"
                 size="large"

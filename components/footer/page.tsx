@@ -22,7 +22,7 @@ function page() {
             <h1 className="text-[18px] font-bold mt-[32px] mb-[17px]">
               Bizni ijtimoiyi tarmoqlar
             </h1>
-            <div className="flex gap-[12px]">
+            <div className="flex gap-[12px] flex-wrap">
               <InstagramOutlined className="text-[30px] w-[50px] h-[44px] bg-[#F0F0F0] py-[12px] px-[15px] cursor-pointer hover:text-[red] duration-200 rounded-lg" />
               <FacebookOutlined className="text-[30px] w-[50px] h-[44px] bg-[#F0F0F0] py-[12px] px-[15px] cursor-pointer hover:text-[blue] duration-200 rounded-lg" />
               <TwitterOutlined className="text-[30px] w-[50px] h-[44px] bg-[#F0F0F0] py-[12px] px-[15px] cursor-pointer hover:text-[#76bdef] duration-200 rounded-lg" />
@@ -90,7 +90,7 @@ function page() {
               </li>
             </ul>
           </div>
-          <div className="w-[290px]">
+          <div className="max-w-[290px] w-full">
             <h2 className="text-[18px] font-bold ">Biz bilan aloqa</h2>
             <p className="text-[#240E0099] font-medium mt-[20px]">
               <span className="text-[black]">Manzilimiz:</span> 100052,
