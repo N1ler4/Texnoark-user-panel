@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function page() {
   return (
-    <div>page</div>
+    <div>404 Not FOUND</div>
   )
 }

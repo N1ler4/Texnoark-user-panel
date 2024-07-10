@@ -12,7 +12,7 @@ import Footer_Banner from "../images/Footer_Banner.png";
 import Swiper from "../components/swiper/page";
 import useCategoryStore from "@/store/categories/page";
 import { useEffect, useState } from "react";
-import Aksiya from "@/images/Aksiya.svg";
+import Aksiya from "@/images/aksiya.svg";
 import Telefon from "@/images/mobile.svg";
 import WashingCard from "@/images/washing_machine.svg";
 import Desktop from "@/images/desktop.svg";
