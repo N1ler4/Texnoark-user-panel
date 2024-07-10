@@ -2,10 +2,11 @@
 import React, { useState } from "react";
 import Container from "../../components/container/page";
 import Swiper from "../../components/swiper/page";
+import { getAbout } from "@/helpers/about-helper";
 
 function Index() {
   const [aboutactive, setAboutActive] = useState(
-    localStorage.getItem("aboutus") || "Texnoark haqida"
+    getAbout() || "Texnoark haqida"
   );
   const arr = [
     "Texnoark haqida",

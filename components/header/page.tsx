@@ -22,6 +22,7 @@ import useSubCategoryStore from "@/store/sub-categories/page";
 import { getAccessToken, getId } from "@/helpers/auth-helpers";
 import useLikeStore from "@/store/like";
 import useCartStore from "@/store/cart";
+import { saveAbout } from "@/helpers/about-helper";
 
 function Index() {
   const [open, setOpen] = useState(false);
@@ -83,7 +84,7 @@ function Index() {
     }
   };
   const handleAboutClick = () => {
-    localStorage.setItem("aboutus", "Texnoark haqida");
+    saveAbout("Texnoark haqida");
   };
   const getCartCount = async()=>{
     const res = await getCart(id);
@@ -227,8 +228,7 @@ function Index() {
                         size="large"
                         className="bg-[#F0F0F0] cursor-pointer"
                         onClick={() => {
-                          localStorage.setItem(
-                            "aboutus",
+                          saveAbout(
                             "Yoqtirgan mahsulotlar"
                           );
                         }}
@@ -281,7 +281,7 @@ function Index() {
                         icon={<UserOutlined className="text-lg text-black" />}
                         className="bg-[#F0F0F0] cursor-pointer"
                         onClick={() => {
-                          localStorage.setItem("aboutus", "Shaxsiy malumotlar");
+                         saveAbout("Shaxsiy malumotlar");
                         }}
                       />
                     </Link>
@@ -325,7 +325,7 @@ function Index() {
                     size="large"
                     className="bg-[#F0F0F0] cursor-pointer"
                     onClick={() => {
-                      localStorage.setItem("aboutus", "Yoqtirgan mahsulotlar");
+                      saveAbout("Yoqtirgan mahsulotlar");
                     }}
                   >
                     <HeartOutlined className="text-lg text-black" />
@@ -376,7 +376,7 @@ function Index() {
                     icon={<UserOutlined className="text-lg text-black" />}
                     className="bg-[#F0F0F0] cursor-pointer"
                     onClick={() => {
-                      localStorage.setItem("aboutus", "Shaxsiy malumotlar");
+                      saveAbout("Shaxsiy malumotlar");
                     }}
                   />
                 </Link>

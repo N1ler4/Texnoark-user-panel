@@ -6,13 +6,14 @@ import Card from "@/components/products/page";
 import useLikeStore from "@/store/like";
 import { getId } from "@/helpers/auth-helpers";
 import useAuthStore from "@/store/auth";
+import { getAbout } from "@/helpers/about-helper";
 
 
 export default function Page() {
   const [data, setData] = useState<any>([]);
   const [admin, setAdmin] = useState<any>([]);
   const [aboutactive, setAboutActive] = useState(
-    localStorage.getItem("aboutus") || "Shaxsiy malumotlar"
+    getAbout() || "Shaxsiy malumotlar"
   );
   const { getLike } = useLikeStore();
   const { getAdmin } = useAuthStore();

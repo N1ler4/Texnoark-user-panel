@@ -18,6 +18,7 @@ import WashingCard from "@/images/washing_machine.svg";
 import Desktop from "@/images/desktop.svg";
 import Konditseoner from "@/images/konditseoner.svg";
 import Link from "next/link";
+import { saveCategory } from "@/helpers/cetegory-helper";
 
 export default function Home() {
   const { categories, getCategories } = useCategoryStore();
@@ -41,7 +42,7 @@ export default function Home() {
                   href={"/categories"}
                   key={i}
                   onClick={() =>
-                    localStorage.setItem("CategoryId", JSON.stringify(e.id))
+                    saveCategory(JSON.stringify(e.id))
                   }
                 >
                   <div className="duration-200 hover:scale-105 flex items-center justify-between w-[300px] lg:w-[440px] h-[100px] lg:h-[120px] py-[45px] px-[59px] bg-white rounded-xl cursor-pointer card">
@@ -61,7 +62,7 @@ export default function Home() {
             <Link
               href={"/categories"}
               onClick={() =>
-                localStorage.setItem("CategoryId", JSON.stringify(0))
+                saveCategory(JSON.stringify(0))
               }
             >
               <div className="duration-200 hover:scale-105 flex items-center justify-between w-[300px] lg:w-[440px] h-[100px] lg:h-[120px] py-[45px] px-[59px] bg-white rounded-xl cursor-pointer card">
