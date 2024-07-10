@@ -8,7 +8,6 @@ import { getId } from "@/helpers/auth-helpers";
 import useAuthStore from "@/store/auth";
 import { getAbout } from "@/helpers/about-helper";
 
-
 export default function Page() {
   const [data, setData] = useState<any>([]);
   const [admin, setAdmin] = useState<any>([]);
@@ -26,7 +25,6 @@ export default function Page() {
       setAdmin(res.data.data);
     }
   };
-
 
   const arr = [
     "Shaxsiy malumotlar",
@@ -126,7 +124,7 @@ export default function Page() {
             </div>
           )}
           {aboutactive == "Yoqtirgan mahsulotlar" && (
-            <div className="flex flex-wrap w-[70%] gap-2  ">
+            <div className="flex flex-wrap w-[70%] gap-2 ">
               {data.length ? (
                 data?.map((e: any, i: any) => {
                   const product = e.product_id;
@@ -137,11 +135,14 @@ export default function Page() {
                       name={product.name}
                       cost={product.price}
                       id={product.id}
+                      clicked={getLikedProducts}
                     />
                   );
                 })
               ) : (
-                <div className="text-center">You have not any liked products</div>
+                <div className="text-center">
+                  You have not any liked products
+                </div>
               )}
             </div>
           )}

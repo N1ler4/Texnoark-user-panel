@@ -16,7 +16,7 @@ export default function App() {
   const { getProduct } = useProductStore();
 
   const getData = async () => {
-    const res = await getProduct("", 10, 1);
+    const res = await getProduct("", 100, 1);
     if (res && res.status === 200) {
       setData(res.data.data.products);
     }
@@ -58,9 +58,15 @@ export default function App() {
         className="mySwiper"
       >
         {data.length > 0 ? (
-          data.map((product:any) => (
+          data.map((product: any) => (
             <SwiperSlide key={product.id}>
-              <ProductCard img={product.images[0]} name={product.name} cost={product.price} id={product.id}/>
+              <ProductCard
+                img={product.images[0]}
+                name={product.name}
+                cost={product.price}
+                id={product.id}
+                clicked={() => getData()}
+              />
             </SwiperSlide>
           ))
         ) : (
