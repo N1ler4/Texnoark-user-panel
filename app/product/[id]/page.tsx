@@ -4,7 +4,7 @@ import Container from "@/components/container/page";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import "../style.css";
-import { Button, Carousel, message } from "antd";
+import { Button, Carousel } from "antd";
 import Image from "next/image";
 import Car from "@/images/car.svg";
 import Shop from "@/images/shop.svg";
@@ -19,6 +19,7 @@ import { SendOutlined } from "@ant-design/icons";
 import useCommentStore from "@/store/comments";
 import "./style.css";
 import { Formik, Form, Field } from "formik";
+import useCartStore from "@/store/cart";
 
 function Product() {
   const [product, setData] = useState<any>({});
@@ -28,6 +29,7 @@ function Product() {
   const { id } = useParams();
   const { getSingleProduct } = useProductStore();
   const { getComments, postComment } = useCommentStore();
+  const { postCart } = useCartStore();
 
   const getData = async () => {
     const res = await getSingleProduct(id);
@@ -40,6 +42,11 @@ function Product() {
     if (response && response.status === 200) {
       setComment(response.data.data.comment);
     }
+  };
+
+
+  const postCartData = {
+    product_id: Number(id),
   };
 
   useEffect(() => {
@@ -58,9 +65,9 @@ function Product() {
     comment: Yup.string().required(),
   });
   const handleSubmit = async (values: any) => {
-    const res = await postComment(values)
+    const res = await postComment(values);
     if (res && res.status === 201) {
-      getCommentsData()
+      getCommentsData();
     }
   };
 
@@ -119,9 +126,21 @@ function Product() {
                 Oyiga {Math.ceil(product.price / 12)} so‘mdan 12/oyga muddatli
                 to ‘lov
               </p>
-              <div className="flex justify-between mb-[40px]">
-                <Button className="single_btn">Savatga qo ‘shish</Button>
-                <Button className="single_btn2">Xarid qilish</Button>
+              <div className="flex justify-between mb-[40px] gap-5">
+                <Button
+                  className="single_btn"
+                  onClick={() => postCart(postCartData)}
+                >
+                  Savatga qo ‘shish
+                </Button>
+                <Button
+                  className="single_btn2"
+                  onClick={() => {
+                    postCart(postCartData)
+                  }}
+                >
+                  Xarid qilish
+                </Button>
               </div>
 
               <div className="flex flex-col gap-[20px]">
@@ -257,18 +276,21 @@ function Product() {
               {comments == "Mijozlarni fikri" && (
                 <div className="bg-white p-5 h-full mt-[60px] overflow-y-scroll max-h-[510px] ">
                   <Formik
-                    initialValues={{ comment: "" , product_id : Number(id)}}
+                    initialValues={{ comment: "", product_id: Number(id) }}
                     validationSchema={validationSchema}
                     onSubmit={handleSubmit}
                   >
                     {({ isSubmitting }) => (
                       <Form className="flex gap-3 items-center">
-                        <Field name="comment" as={TextArea} placeholder="Add your comments"/>
+                        <Field
+                          name="comment"
+                          as={TextArea}
+                          placeholder="Add your comments"
+                        />
                         <Button
                           htmlType="submit"
                           icon={<SendOutlined />}
                           className="custom-send-btn"
-                          
                         />
                       </Form>
                     )}
