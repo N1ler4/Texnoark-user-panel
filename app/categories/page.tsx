@@ -30,6 +30,10 @@ function Index() {
     setLoading(false);
   };
 
+  const handleClick = async()=>{
+    console.log("clicked")
+  }
+
   useEffect(() => {
     getData();
   }, []);
@@ -73,6 +77,7 @@ function Index() {
                     name={e.name}
                     cost={e.price}
                     id={e.id}
+                    clicked={handleClick}
                   />
                 ))
               ) : (

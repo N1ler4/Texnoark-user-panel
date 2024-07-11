@@ -198,11 +198,11 @@ function Index() {
                     <div className="flex flex-col justify-start items-center w-full px-5 mt-2">
                       {subCategory.map((e: any) => {
                         return (
-                          <Link href={"/#"} className="w-full" key={e.id}>
+                          <Link href={"/categories"} className="w-full" key={e.id}>
                             <div className="h-[65px] w-full mb-2 bg-[#F5F5F5] rounded-xl">
                               <div className="py-5 pl-5 items-center justify-center w-full flex flex-col">
                                 <div className="h-[50px] w-full">
-                                  <Link href={`#`}>{e.name}</Link>
+                                  <Link href={`/`}>{e.name}</Link>
                                 </div>
                               </div>
                             </div>
